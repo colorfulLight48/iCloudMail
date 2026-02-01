@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "icloud-mail-py"
+version = "1.0.0"
+description = "Python Mail Client for iCloud"
+dependencies = [] # Add libraries here, e.g., ["requests>=2.25.0"]
+
+[project.scripts]
+# This creates a 'mail-client' command that runs the 'main' function in mail.py
+mail-client = "mail:main"
