@@ -15,7 +15,7 @@ from datetime import datetime
 import getpass
 
 # Configuration
-USER = input("Email Address: ")
+USER = ""
 PASSWORD = getpass.getpass("Password: ")
 SERVER = 'imap.mail.me.com'
 SEND_SCRIPT_PATH = "/Users/astro77/mail/script.py"
@@ -248,7 +248,7 @@ def send_mail(draft_data=None):
         while True:
             lines.append(input())
 
-    except KeyboardInterrupt:
+    except (KeyboardInterrupt, EOFError):
         if current_step == "body":
             # Combine new lines with any existing draft body
             new_content = "\n".join(lines)
@@ -391,7 +391,13 @@ def main():
     print(f"Account: {USER}")
     print(f"Unread Messages: {get_unread_count()}")
     print(f"{'='*40}")
-
+    try:
+        USER = input("Email Address: ")
+        PASSWORD = getpass.getpass("Password: ")
+    except (KeyboardInterrupt, EOFError):
+        print("Exiting...")
+        return
+        
     while True:
         try:
             cmd = input("\n[iCloud] (list/read/send/load/exit): ").lower().strip()
@@ -412,7 +418,7 @@ def main():
                 break
         except ValueError:
             print("⚠️ Invalid input. Use numbers for indices.")
-        except KeyboardInterrupt:
+        except (KeyboardInterrupt, EOFError):
             print("\nReturning to main menu...")
             continue 
 
