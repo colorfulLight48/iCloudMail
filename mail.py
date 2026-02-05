@@ -12,11 +12,11 @@ import shutil
 import mimetypes  # Add this to the top of your file
 import json
 from datetime import datetime
-
+import getpass
 
 # Configuration
-USER = os.environ.get("EMAIL_ADDRESS")
-PASSWORD = os.environ.get("PASSWORD")
+USER = input("Email Address: ")
+PASSWORD = getpass.getpass("Password: ")
 SERVER = 'imap.mail.me.com'
 SEND_SCRIPT_PATH = "/Users/astro77/mail/script.py"
 
