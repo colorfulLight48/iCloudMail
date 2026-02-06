@@ -1,0 +1,25 @@
+name: icloud-mail-py
+version: '2.0.2'
+summary: Python Mail Client for iCloud Mail
+description: |
+ Python Mail Client for iCloud Mail
+base: core24
+grade: stable
+confinement: strict
+
+apps:
+  icloud-mail-py:
+    command: bin/python3 $SNAP/mail.py 
+    plugs:
+      - network
+      - network-bind
+      - home        # To save attachments/logs to ~/
+      - desktop     # To allow webbrowser.open() to work
+parts:
+  mail-client:
+    plugin: python
+    source: .
+    python-packages:
+          - pip
+          - setuptools
+ 
